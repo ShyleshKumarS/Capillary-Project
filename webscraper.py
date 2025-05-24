@@ -105,8 +105,9 @@ def scrape_puma(playwright):
     return all_products
 
 
-with sync_playwright() as playwright:
-    products = scrape_puma(playwright)
-    df = pd.DataFrame(products)
-    df.to_csv("puma_sale_products.csv", index=False)
-    print("Saved to puma_sale_products.csv")
+def run_scraper():
+    with sync_playwright() as playwright:
+        products = scrape_puma(playwright)
+        df = pd.DataFrame(products)
+        df.to_csv("puma_sale_products.csv", index=False)
+        print("Saved to puma_sale_products.csv")

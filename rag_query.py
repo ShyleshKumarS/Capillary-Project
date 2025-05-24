@@ -56,7 +56,7 @@ def build_prompt(command_type: str, query: str, context: str) -> str:
     
     common_table_task = (
         "1. Present a comparison of these products in a **Markdown table** with the following columns:\n"
-        "   - Title/Description\n"
+        "   - Title\n"
         "   - Promotion\n"
         "   - Category\n"
         "   - Sizes Available\n"
