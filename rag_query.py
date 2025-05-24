@@ -14,7 +14,7 @@ def search_products(query: str, top_k: int = 3):
     vectordb = Chroma(
         embedding_function=embedding_model,
         persist_directory="./chroma_db",
-        collection_name="puma_sale_products"
+        collection_name="puma_sale_products" #Change this collection name after refreshing the data
     )
 
     query_embedding = embedding_model.embed_query(query)
@@ -57,6 +57,7 @@ def build_prompt(command_type: str, query: str, context: str) -> str:
     common_table_task = (
         "1. Present a comparison of these products in a **Markdown table** with the following columns:\n"
         "   - Title\n"
+        "   - Description(Overview)\n"
         "   - Promotion\n"
         "   - Category\n"
         "   - Sizes Available\n"
@@ -128,11 +129,11 @@ def llm_response(command_type: str,query: str, top_k: int = 3):
         "Response": llm_response.choices[0].message.content
     }
 
-if __name__ == "__main__":
-    command_type = str(input("Enter command type (search/summary): "))
-    query = str(input("Enter your query: "))
-    llm_response_result = llm_response(command_type,query)
-    print("LLM Response: ", llm_response_result["Response"])
+# if __name__ == "__main__":
+#     command_type = str(input("Enter command type (search/summary): "))
+#     query = str(input("Enter your query: "))
+#     llm_response_result = llm_response(command_type,query)
+#     print("LLM Response: ", llm_response_result["Response"])
     
 
     

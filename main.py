@@ -1,9 +1,9 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from rag_query import llm_response
+from fastapi import FastAPI, HTTPException #type: ignore
+from pydantic import BaseModel  #type: ignore
+from rag_query import llm_response #type: ignore
 from ingestion_vector import ingestion
 from webscraper import run_scraper
-import uvicorn
+import uvicorn #type: ignore
 
 app = FastAPI(title="PromoSensei API", 
               description="API for Puma deals shopping assistant")

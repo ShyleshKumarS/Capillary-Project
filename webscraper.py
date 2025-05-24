@@ -30,6 +30,8 @@ def scrape_puma(playwright):
 
     all_products = []
 
+    product_links = product_links[:5]
+    print(f"Simplicity: Found {len(product_links)} product links")
 # Product Page Details
     for link in product_links:
         try:
@@ -109,5 +111,5 @@ def run_scraper():
     with sync_playwright() as playwright:
         products = scrape_puma(playwright)
         df = pd.DataFrame(products)
-        df.to_csv("puma_sale_products.csv", index=False)
+        df.to_csv("puma_sale_products_refreshed.csv", index=False)
         print("Saved to puma_sale_products.csv")

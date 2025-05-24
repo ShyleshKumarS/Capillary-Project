@@ -6,7 +6,7 @@ from langchain.vectorstores import Chroma #type: ignore[import]
 
 def ingestion():
 
-    df = pd.read_csv('puma_sale_products.csv')
+    df = pd.read_csv('puma_sale_products_refreshed.csv')
     df = df.dropna().drop_duplicates(subset=["Title", "Description", "Product Link"])
 
     texts = (df['Title'].fillna('') + ". " + df['Description'].fillna('')).tolist()
@@ -27,7 +27,7 @@ def ingestion():
     persist_directory = './chroma_db'
 
 
-    vectordb = Chroma.from_texts(texts, embedding_model, metadatas=metadatas, persist_directory=persist_directory, collection_name="puma_sale_products")
+    vectordb = Chroma.from_texts(texts, embedding_model, metadatas=metadatas, persist_directory=persist_directory, collection_name="puma_sale_products_refreshed")
     vectordb.persist()
 
     print("Data inserted into Chroma DB")
