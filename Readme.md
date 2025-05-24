@@ -121,6 +121,4 @@ Click **"🔄 Refresh Product Data"** in the sidebar to re-scrape Puma deals and
 
 ---
 
-## License 📜
-
-MIT License - See [LICENSE](./LICENSE)
+Shylesh Kumar S
