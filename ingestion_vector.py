@@ -31,6 +31,10 @@ def ingestion():
     vectordb.persist()
 
     print("Data inserted into Chroma DB")
+    
+    
+# Example usage of the ingestion function    
+
 
 # query = "PUMA men's running shoes with good discount"
 # query_embedding = embedding_model.embed_query(query)
