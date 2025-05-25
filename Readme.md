@@ -15,7 +15,7 @@ An intelligent shopping assistant that scrapes Puma's sale section, creates embe
 ---
 
 ## Architecture Diagram 📐
-
+![alt text](image.png)
 ---
 
 ## File Structure 📂
