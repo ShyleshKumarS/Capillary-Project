@@ -56,6 +56,7 @@ def build_prompt(command_type: str, query: str, context: str) -> str:
     
     common_table_task = (
         "1. Present a comparison of these products in a **Markdown table** with the following columns:\n"
+        "Only include 3 unique products in the table to avoid redundancy.\n"
         "   - Title\n"
         "   - Description(Overview)\n"
         "   - Promotion\n"
@@ -76,24 +77,30 @@ def build_prompt(command_type: str, query: str, context: str) -> str:
         "Provide a **brief summary** of the top Puma deals currently available. Mention any ongoing promotions, best discount rates, and popular product categories.\n"
         "You do **not** need to include a comparison table or recommendation in this case.\n"
     )
+    
+    score_task = (
+        "4. For each product, provide a **Response Score** based on score passing.\n"
+    )
 
     if command_type == "search":
         return (
             base_intro +
             product_section +
             common_table_task +
-            recommendation_task
+            recommendation_task +
+            score_task
         )
 
     elif command_type == "summary":
-        return base_intro + summary_task
+        return base_intro + summary_task + score_task
 
     else:
         return (
             base_intro +
             product_section +
             common_table_task +
-            recommendation_task
+            recommendation_task +
+            score_task
         )
 
     
@@ -106,7 +113,8 @@ def llm_response(command_type: str,query: str, top_k: int = 3):
     Sizes: {r['metadata'].get('Sizes')}
     Actual Price: ₹{r['metadata'].get('Actual Price')}
     Discounted Price: ₹{r['metadata'].get('Discounted Price')}
-    Link: {r['metadata'].get('Link')}"""
+    Link: {r['metadata'].get('Link')}
+    Response Score: {r['score']:.2f}"""
     for i, r in enumerate(results)
     )
 
